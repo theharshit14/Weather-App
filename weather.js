@@ -10,11 +10,11 @@ const weather_body = document.querySelector(".weather-body");
 
 async function checkWeather(city) {
   const api_key = "490fc59738b0a1cbe11fd2ba4cace827";
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}`;
-
+  const url = `https://api.openweathermap.org/data/2.5/weather?id=${city}&appid=${api_key}`;
   const weather_data = await fetch(`${url}`).then((response) =>
     response.json()
   );
+
 
   if (weather_data.cod === "404") {
     location_not_found.style.display = "flex";
@@ -23,7 +23,14 @@ async function checkWeather(city) {
     return;
   }
 
-  console.log(weather_data,weather_data.main.humidity);
+  // function onKeyPress () {
+  //   fetch('./configfile/currentcityandlist.json')
+  //   .then(response => response.json())
+  //   .then(data => console.log(data))
+  //   .catch(error => console.log(error));
+  // }
+
+  console.log(weather_data.weather_data.main.humidity);
 
   temp.innerHTML = `${Math.round(weather_data.main.temp - 273.15)}°C`;
 
